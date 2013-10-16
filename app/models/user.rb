@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
     has_and_belongs_to_many :roles
+
+    def role?(role)
+        return self.roles.find_by_name(role).try(:name) == role.to_s
+    end
 end

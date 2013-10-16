@@ -1,0 +1,24 @@
+<h1><%= @user.email %></h1>
+<div>
+    <div>Set user role</div>
+    <div class="set-role-block">
+        <%= form_tag('/role/submit/', method: "post") do %>
+            <%= hidden_field_tag :user_id, @user.id %>
+            <ul>
+                <% @role_items.each do |item| %>
+                    <% if @user.roles.include? (item) %>
+                        <li> <%= check_box_tag "role_checkbox[]", item.id, checked: true %> <%= item.name %> </li>
+                    <% else %>
+                        <li> <%= check_box_tag "role_checkbox[]", item.id %> <%= item.name %> </li>
+                    <% end %>
+                <% end %>
+            </ul>
+            <%= submit_tag "Update" %>
+        <% end %>
+    </div>
+
+    <div class="link">
+        <%= link_to 'back', role_list_path() %>
+    </div>
+
+</div>

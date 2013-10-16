@@ -1,7 +1,11 @@
 LocalWisdom::Application.routes.draw do
-  root :to => 'index#show'
+  get "role/list"
+  get "role/show"
+  get "role/submit"
   get "index/show"
   devise_for :users
+  root :to => 'index#show'
+  match 'role/submit' => 'role#submit', :via => :post
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
